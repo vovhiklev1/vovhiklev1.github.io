@@ -32,7 +32,7 @@ function Circle(x, y, radius, c) {
 };
 
 function update() {
-    // var ballWidth = Math.floor(ball.radius);
+    var ballWidth = Math.floor(ball.radius);
 
     /*to right*/
     if (ball.x >= obj.width && ball.right) {
@@ -108,6 +108,7 @@ function play() {
 function Btn() {
     var button = $("#btn");
     this.draw = function () {
+        console.log('resize btn  draw')
         this.height = parseInt(button.outerHeight());
         this.width = parseInt(button.outerWidth(true));
         this.top = parseInt(button.offset().top);
@@ -142,28 +143,52 @@ window.onload = function () {
         clearInterval(gameInterval);
         init();
         gameInterval = setInterval(play, 1000 / 230);
+
+        window.onresize = function (event) {
+            /*resizing after started*/
+            function reDraw() {
+
+                /*obects position in percent*/
+                var oldCanvWidth = obj.width / 100;
+                var oldCanvHeight = obj.height / 100;
+                var oldBallWidth = ball.x / oldCanvWidth;
+                var oldBallHeight = ball.y / oldCanvHeight;
+
+                var height = $(window).height();
+                var width = $(window).width();
+                obj.width = width;
+                obj.height = height;
+
+                /*new ball position in percent*/
+                var newCanvWidth = obj.width / 100;
+                var oldCanvHeight = obj.height / 100;
+                ball.x = Math.floor(newCanvWidth * oldBallWidth);
+                ball.y = Math.floor(oldCanvHeight * oldBallHeight);
+
+                game.height = height;
+                game.width = width;
+                draw();
+            };
+            reDraw();
+        };
     };
 };
 
 window.onresize = function (event) {
+    /*resizing before started*/
     function reDraw() {
-
-        /*obects position in percent*/
-        var oldCanvWidth = obj.width / 100;
-        var oldCanvHeight = obj.height / 100;
-        var oldBallWidth = ball.x / oldCanvWidth;
-        var oldBallHeight = ball.y / oldCanvHeight;
-
         var height = $(window).height();
         var width = $(window).width();
+        /*obects position in percent*/
+        var canvWidth = obj.width / 100;
+        var canvHeight = obj.height / 100;
+
         obj.width = width;
         obj.height = height;
 
         /*new ball position in percent*/
-        var newCanvWidth = obj.width / 100;
-        var oldCanvHeight = obj.height / 100;
-        ball.x = Math.floor(newCanvWidth * oldBallWidth);
-        ball.y = Math.floor(oldCanvHeight * oldBallHeight);
+        ball.x = Math.floor(canvWidth * 50);
+        ball.y = Math.floor(canvHeight * 50);
 
         game.height = height;
         game.width = width;
