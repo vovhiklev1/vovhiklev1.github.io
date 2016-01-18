@@ -1,7 +1,7 @@
 function draw() {
     game.draw();
     canvas.fillStyle = '#ccc';
-    ball.draw(); // шарик
+    ball.draw(); // С€Р°СЂРёРє
     btn.draw();
 };
 
