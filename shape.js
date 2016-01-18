@@ -108,7 +108,6 @@ function play() {
 function Btn() {
     var button = $("#btn");
     this.draw = function () {
-        console.log('resize btn  draw')
         this.height = parseInt(button.outerHeight());
         this.width = parseInt(button.outerWidth(true));
         this.top = parseInt(button.offset().top);
