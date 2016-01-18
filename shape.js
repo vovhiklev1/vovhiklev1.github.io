@@ -32,7 +32,7 @@ function Circle(x, y, radius, c) {
 };
 
 function update() {
-   // var ballWidth = Math.floor(ball.radius);
+    // var ballWidth = Math.floor(ball.radius);
 
     /*to right*/
     if (ball.x >= obj.width && ball.right) {
