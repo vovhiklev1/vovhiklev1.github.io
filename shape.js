@@ -32,7 +32,7 @@ function Circle(x, y, radius, c) {
 };
 
 function update() {
-    var ballWidth = Math.floor(ball.radius);
+   // var ballWidth = Math.floor(ball.radius);
 
     /*to right*/
     if (ball.x >= obj.width && ball.right) {
@@ -108,7 +108,6 @@ function play() {
 function Btn() {
     var button = $("#btn");
     this.draw = function () {
-        console.log('resize btn  draw')
         this.height = parseInt(button.outerHeight());
         this.width = parseInt(button.outerWidth(true));
         this.top = parseInt(button.offset().top);
@@ -163,10 +162,9 @@ window.onresize = function (event) {
         /*new ball position in percent*/
         var newCanvWidth = obj.width / 100;
         var oldCanvHeight = obj.height / 100;
-
         ball.x = Math.floor(newCanvWidth * oldBallWidth);
         ball.y = Math.floor(oldCanvHeight * oldBallHeight);
-        // game = new Rect('#000', 0, 0, width, height);
+
         game.height = height;
         game.width = width;
         draw();
